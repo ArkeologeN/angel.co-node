@@ -205,6 +205,38 @@ angel.feeds.consume({
 });
 ```
 
+## Search
+Specification regardings calls and parameters for search is available at: https://angel.co/api/spec/search
+
+### Search Entity.
+Search by name for Startups, Users, MarketTags and LocationTags, optionally narrowing the results by type. Results are sorted by a mix of match and popularity.
+
+```javascript
+angel.search.search({
+    query: "hamza-waqas",
+    type: "User"
+}, function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+```
+
+### Search by Slugs
+Search for entity by slug directly.
+
+```javascript
+angel.search.slugs({
+    query: "hamza-waqas"
+}, function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+```
+
 ## Contribution
 
 This wrapper is solely written at `Kuew Inc` by [Hamza Waqas](http://github.com/ArkeologeN)
