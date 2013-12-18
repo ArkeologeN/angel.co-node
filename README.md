@@ -18,6 +18,7 @@ var angel = require('angel.co')('APP_ID', 'APP_SECRET');
 Please follow the documentation from [https://angel.co/api/](AngelList documentation)
 
 ## Authentication
+
 Module includes ability to let the user authenticate from AngelList. For now, its hard coded and asks for all ther permissions but you can change sa you like ;-)
 
 Below example has been implemented with `Express.js` you may modify it.
@@ -113,6 +114,70 @@ angel.users.tags('1654', {
     include_children: true,
     investors: 'by_residence'
 }, function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+```
+
+## Startups
+
+Specification of startup is available at https://angel.co/api/spec/startups
+
+### Get Startup
+Returns the information of the given startup Id.
+
+```javascript
+angel.startups.get(6702, function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+```
+
+### Get Startup Comments
+Retrieves all the comments of startup.
+
+```javascript
+angel.startups.comments(6702, function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+```
+
+### Startup Roles
+Returns the company's startup roles. Direction must be either `Incoming` or `Outgoing`.
+
+```javascript
+angel.startups.roles(6702, {direction: "outgoing"}, function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+```
+
+### Filter Startups
+Filters the startups by criteria.
+
+```javascript
+angel.startups.filter({filter: "raising"}, function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+```
+
+### Get Startups by Tag
+Returns companies that are tagged with the given tag or a child of the given tag. Results are paginated and ordered according to the order parameter.
+
+```javascript
+angel.startups.tags(1654, {order: "asc"}, function(err, body) {
     if ( err )
         return console.log(err);
 
