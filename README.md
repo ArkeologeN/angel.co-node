@@ -42,6 +42,16 @@ app.get('/auth/angel-list/callback', function(req, res) {
 
 `PS:` Your callback url must be similar to what you have configured while creating an app on AngelList.
 
+## Available Services.
+
+You can serve this wrapper for following services:
+
+* [Users](https://github.com/ArkeologeN/angel.co-node#users)
+* [Startups](https://github.com/ArkeologeN/angel.co-node#startups)
+* [Feeds](https://github.com/ArkeologeN/angel.co-node#feeds)
+* [Search](https://github.com/ArkeologeN/angel.co-node#search)
+* [Comments](https://github.com/ArkeologeN/angel.co-node#comments)
+
 ## Users
 
 Specification for the user is available at: https://angel.co/api/spec/users
@@ -230,6 +240,52 @@ Search for entity by slug directly.
 angel.search.slugs({
     query: "hamza-waqas"
 }, function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+```
+
+## Comments
+
+Specification for the comments is available at:  https://angel.co/api/spec/comments
+
+### Get Comments
+Returns all the comments of entity.
+
+```javascript
+angel.comments.get({
+    commentable_type: "Startup",
+    commentable_id: 6702
+}, function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+```
+
+### Create Comment
+Creates a new comment against commentable item.
+
+```javascript
+angel.comments.create('I b reviewing it now!', {
+    commentable_type: "Startup",
+    commentable_id: 6702
+}, function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+```
+
+### Delete a comment
+Deletes a comment.
+
+```javascript
+angel.comments.delete('comment_id', function(err, body) {
     if ( err )
         return console.log(err);
 
