@@ -17,6 +17,30 @@ var angel = require('angel.co')('APP_ID', 'APP_SECRET');
 
 Please follow the documentation from [https://angel.co/api/](AngelList documentation)
 
+## Authentication
+Module includes ability to let the user authenticate from AngelList. For now, its hard coded and asks for all ther permissions but you can change sa you like ;-)
+
+Below example has been implemented with `Express.js` you may modify it.
+
+```javascript
+app.get('/auth/angel-list', function(req, res) {
+    res.redirect(angel.getAuthorizeUrl());
+});
+
+app.get('/auth/angel-list/callback', function(req, res) {
+    angel.auth.requestAccessToken(req.query.code, function(err, response) {
+        if ( err )
+            return console.error(err); //Something went wrong.
+            
+        // I got the Token. Ain't you?
+        app.set('my_key_to_token', response.access_token); // Persist it anywhere.
+        res.redirect('/'); // Go back to the homepage.
+    });
+});
+```
+
+`PS:` Your callback url must be similar to what you have configured while creating an app on AngelList.
+
 ## Users
 
 Specification for the user is available at: https://angel.co/api/spec/users
