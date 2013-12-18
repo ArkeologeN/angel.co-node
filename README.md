@@ -185,6 +185,26 @@ angel.startups.tags(1654, {order: "asc"}, function(err, body) {
 });
 ```
 
+## Feeds
+
+Specification for feeds entity is available at: https://angel.co/api/spec/activity_feeds
+
+### Consume
+Returns site activity. If authenticated and the personalized parameter is passed in, only activity from the authenticated user's social graph is returned. No more than 25 items will be returned. Results are paginated and ordered by most recent story first, unless a since parameter is given.
+
+```javascript
+angel.feeds.consume({
+    since: 'PRESAVED_UNIX_TIMESTAMP',
+    personalized: 1,
+    access_token: 'access_token_here'
+}, function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+```
+
 ## Contribution
 
 This wrapper is solely written at `Kuew Inc` by [Hamza Waqas](http://github.com/ArkeologeN)
