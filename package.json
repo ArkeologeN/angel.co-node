@@ -9,8 +9,8 @@
     "wrapper"
   ],
   "main": "./lib/main",
-  "author": "Hamza Waqas <hamzawaqas@live.com> (http://github.com/ArkeologeN)",
-  "version": "0.1.0",
+  "author": "Hamza Waqas <hamzawaqas.programmer@gmail.com> (http://github.com/ArkeologeN)",
+  "version": "1.0.0",
   "engines": {
     "node": ">=0.6"
   },

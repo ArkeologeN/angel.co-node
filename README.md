@@ -285,7 +285,7 @@ angel.comments.create('I b reviewing it now!', {
 Deletes a comment.
 
 ```javascript
-angel.comments.delete('comment_id', function(err, body) {
+angel.comments.trash('comment_id', function(err, body) {
     if ( err )
         return console.log(err);
 
