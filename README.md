@@ -3,6 +3,7 @@ Angel List
 
 AngelList wrapper purely written in Node.js
 
+[![Build Status](https://travis-ci.org/ArkeologeN/angel.co-node.png?branch=master)](https://travis-ci.org/ArkeologeN/angel.co-node)
 
 ## Getting Started
 
