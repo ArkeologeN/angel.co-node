@@ -744,7 +744,7 @@ angel.likes.likes({
 Creates a new Like action over Likable story.
 
 ```javascript
-angel.likes.create({
+angel.likes.like({
     likable_type: '',
     likable_id: ''
 }, function(err, body) {
@@ -759,7 +759,7 @@ angel.likes.create({
 Creates a new delete / unlike action over Likable story.
 
 ```javascript
-angel.likes.trash('like_id', function(err, body) {
+angel.likes.unlike('like_id', function(err, body) {
     if ( err )
         return console.log(err);
         
