@@ -63,6 +63,7 @@ You can serve this wrapper for following services:
 * [Startup Roles](https://github.com/ArkeologeN/angel.co-node#startup-roles)
 * [Tags](https://github.com/ArkeologeN/angel.co-node#startup-roles)
 * [Likes](https://github.com/ArkeologeN/angel.co-node#likes)
+* [Jobs](https://github.com/ArkeologeN/angel.co-node#jobs)
 
 ## Users
 
@@ -763,6 +764,58 @@ angel.likes.trash('like_id', function(err, body) {
         return console.log(err);
         
     console.log(body); // Something with messages here.
+});
+```
+
+## JObs
+
+Specification for the user is available at: https://angel.co/api/spec/jobs
+
+### List Jobs
+To list the jobs, first argument must be the request options.
+
+```javascript
+angel.jobs.list({ access_token : '...' }, function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+```
+
+### Get a specific job
+To get a job, first argument must be the id of that job and de secound one must be the request options.
+
+```javascript
+angel.jobs.get('job_id',{ access_token : '...' }, function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+```
+
+### Get jobs from a startup
+To get the list of jobs from a startup, first argument must be the **startup id** and de secound one must be the request options.
+
+```javascript
+angel.jobs.startup('startup_id',{ access_token : '...' }, function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+```
+
+### Get jobs from a tag
+To get the list of jobs from a tag, first argument must be the **tag id** and de secound one must be the request options.
+
+```javascript
+angel.jobs.tag('tag_id',{ access_token : '...' }, function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
 });
 ```
 
