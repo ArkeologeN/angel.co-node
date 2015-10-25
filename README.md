@@ -42,6 +42,12 @@ app.get('/auth/angel-list/callback', function(req, res) {
 });
 ```
 
+You can store the access token returned from api and all your next request will use it.
+
+```javascript
+angel.setAccessToken('your_access_token');
+```
+
 `PS:` Your callback url must be similar to what you have configured while creating an app on AngelList.
 
 ## Available Services.
@@ -772,10 +778,10 @@ angel.likes.unlike('like_id', function(err, body) {
 Specification for the user is available at: https://angel.co/api/spec/jobs
 
 ### List Jobs
-To list the jobs, first argument must be the request options.
+To list the jobs.
 
 ```javascript
-angel.jobs.list({ access_token : '...' }, function(err, body) {
+angel.jobs.list(function(err, body) {
     if ( err )
         return console.log(err);
 
@@ -784,10 +790,10 @@ angel.jobs.list({ access_token : '...' }, function(err, body) {
 ```
 
 ### Get a specific job
-To get a job, first argument must be the id of that job and de secound one must be the request options.
+To get a job, first argument must be the id of that job.
 
 ```javascript
-angel.jobs.get('job_id',{ access_token : '...' }, function(err, body) {
+angel.jobs.get('job_id', function(err, body) {
     if ( err )
         return console.log(err);
 
@@ -796,10 +802,10 @@ angel.jobs.get('job_id',{ access_token : '...' }, function(err, body) {
 ```
 
 ### Get jobs from a startup
-To get the list of jobs from a startup, first argument must be the **startup id** and de secound one must be the request options.
+To get the list of jobs from a startup, first argument must be the **startup id**.
 
 ```javascript
-angel.jobs.startup('startup_id',{ access_token : '...' }, function(err, body) {
+angel.jobs.startup('startup_id', function(err, body) {
     if ( err )
         return console.log(err);
 
@@ -808,10 +814,10 @@ angel.jobs.startup('startup_id',{ access_token : '...' }, function(err, body) {
 ```
 
 ### Get jobs from a tag
-To get the list of jobs from a tag, first argument must be the **tag id** and de secound one must be the request options.
+To get the list of jobs from a tag, first argument must be the **tag id**.
 
 ```javascript
-angel.jobs.tag('tag_id',{ access_token : '...' }, function(err, body) {
+angel.jobs.tag('tag_id', function(err, body) {
     if ( err )
         return console.log(err);
 
