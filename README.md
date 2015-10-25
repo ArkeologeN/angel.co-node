@@ -196,7 +196,7 @@ Specification of startup is available at https://angel.co/api/spec/startups
 Returns the information of the given startup Id.
 
 ```javascript
-angel.startups.get(6702, function(err, body) {
+angel.startups.startup(6702, function(err, body) {
     if ( err )
         return console.log(err);
 
