@@ -12,7 +12,7 @@
   "author": "Hamza Waqas <hamzawaqas.programmer@gmail.com> (http://github.com/ArkeologeN)",
   "version": "1.1.0",
   "engines": {
-    "node": ">=0.6"
+    "node": ">=0.10"
   },
   "repository": {
     "type": "git",
@@ -27,11 +27,11 @@
   }],
   "dependencies": {
     "lodash": "~2.4.1",
-    "q": "^1.4.1",
+    "q": "^1.0.0",
     "request": "~2.30.0"
   },
   "devDependencies": {
-    "mocha": "^2.3.3"
+    "mocha": "^1.0.0"
   },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha test/"
