@@ -34,5 +34,8 @@
   },
   "devDependencies": {
     "mocha": "~2.3.3"
-  }
+  },
+  "scripts": {
+     "test": "./node_modules/mocha/bin/mocha test/"
+   }
 }
