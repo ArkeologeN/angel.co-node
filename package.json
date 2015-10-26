@@ -21,15 +21,19 @@
   "bugs": {
     "url": "https://github.com/ArkeologeN/angel.co-node/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://raw.github.com/ArkeologeN/angel.co-node/master/LICENSE"
-    }
-  ],
+  "licenses": [{
+    "type": "MIT",
+    "url": "https://raw.github.com/ArkeologeN/angel.co-node/master/LICENSE"
+  }],
   "dependencies": {
     "lodash": "~2.4.1",
     "q": "^1.4.1",
     "request": "~2.30.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.3"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test/"
   }
 }
