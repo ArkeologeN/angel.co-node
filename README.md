@@ -42,6 +42,12 @@ app.get('/auth/angel-list/callback', function(req, res) {
 });
 ```
 
+You can store the access token returned from api and all your next request will use it.
+
+```javascript
+angel.setAccessToken('your_access_token');
+```
+
 `PS:` Your callback url must be similar to what you have configured while creating an app on AngelList.
 
 ## Available Services.
@@ -63,6 +69,7 @@ You can serve this wrapper for following services:
 * [Startup Roles](https://github.com/ArkeologeN/angel.co-node#startup-roles)
 * [Tags](https://github.com/ArkeologeN/angel.co-node#startup-roles)
 * [Likes](https://github.com/ArkeologeN/angel.co-node#likes)
+* [Jobs](https://github.com/ArkeologeN/angel.co-node#jobs)
 
 ## Users
 
@@ -78,6 +85,13 @@ angel.users.me('access_token_here', function(err, body) {
 
     console.log(body);
 });
+
+//OR with promise
+angel.users.me().then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 
 ### Get User
@@ -90,6 +104,14 @@ angel.users.user('467664', {'include_details': 'investor'}, function(err, body) 
 
     console.log(body);
 });
+
+//OR with promise
+angel.users.user('467664').then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
+
 ```
 
 ### Get User Roles
@@ -102,6 +124,14 @@ angel.users.roles('USER_ID', function(err, body) {
 
     console.log(body);
 });
+
+//OR with promise
+angel.users.roles('USER_ID').then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
+
 ```
 
 ### Batch Request
@@ -114,6 +144,13 @@ angel.users.batch(['155', 671], function(err, body) {
 
     console.log(body);
 });
+
+//OR with promise
+angel.users.batch(['155', 671]).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 
 ### Users Search
@@ -125,6 +162,13 @@ angel.users.search({'slug': "hamza-waqas"}, function(err, body) {
         return console.log(err);
 
     console.log(body);
+});
+
+//OR with promise
+angel.users.search({'slug': "hamza-waqas"}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
 });
 ```
 
@@ -141,6 +185,16 @@ angel.users.tags('1654', {
 
     console.log(body);
 });
+
+//OR with promise
+angel.users.tags('1654',  {
+    include_children: true,
+    investors: 'by_residence'
+}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 
 ### Followers
@@ -153,8 +207,16 @@ angel.users.followers(671, function(err, body) {
         
     console.log(body);
 });
+
+//OR with promise
+angel.users.followers('1654').then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 OR
+
 ```javascript
 // Second argument as true will only return Ids of followers
 angel.users.followers(671, true, function(err, body) {
@@ -162,6 +224,16 @@ angel.users.followers(671, true, function(err, body) {
         return console.log(err);
         
     console.log(body);
+});
+
+//OR with promise
+angel.users.followers('1654', true,  {
+    include_children: true,
+    investors: 'by_residence'
+}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
 });
 ```
 
@@ -175,6 +247,14 @@ angel.users.following(671, function(err, body) {
         
     console.log(body);
 });
+
+//OR with promise
+angel.users.following('1654').then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
+
 ```
 OR
 ```javascript
@@ -185,6 +265,15 @@ angel.users.following(671, true, function(err, body) {
         
     console.log(body);
 });
+
+
+//OR with promise
+angel.users.following('1654', true).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
+
 ```
 
 ## Startups
@@ -195,11 +284,17 @@ Specification of startup is available at https://angel.co/api/spec/startups
 Returns the information of the given startup Id.
 
 ```javascript
-angel.startups.get(6702, function(err, body) {
+angel.startups.startup(6702, function(err, body) {
     if ( err )
         return console.log(err);
 
     console.log(body);
+});
+//OR with promise
+angel.startups.startup('6702').then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
 });
 ```
 
@@ -213,6 +308,13 @@ angel.startups.comments(6702, function(err, body) {
 
     console.log(body);
 });
+
+//OR with promise
+angel.startups.comments('6702').then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 
 ### Startup Roles
@@ -224,6 +326,13 @@ angel.startups.roles(6702, {direction: "outgoing"}, function(err, body) {
         return console.log(err);
 
     console.log(body);
+});
+
+//OR with promise
+angel.startups.roles('6702', {direction: "outgoing"}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
 });
 ```
 
@@ -237,6 +346,13 @@ angel.startups.filter({filter: "raising"}, function(err, body) {
 
     console.log(body);
 });
+
+//OR with promise
+angel.startups.filter({filter: "raising"}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 
 ### Get Startups by Tag
@@ -248,6 +364,13 @@ angel.startups.tags(1654, {order: "asc"}, function(err, body) {
         return console.log(err);
 
     console.log(body);
+});
+
+//OR with promise
+angel.startups.tags(1654, {order: "asc"}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
 });
 ```
 
@@ -261,6 +384,13 @@ angel.startups.followers(6702, function(err, body) {
         
     console.log(body); // Followers here.
 })
+
+//OR with promise
+angel.startups.followers(6702).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 OR
 ```javascript
@@ -271,6 +401,14 @@ angel.startups.followers(6702, true, function(err, body) {
         
     console.log(body); // Followers here.
 })
+
+
+//OR with promise
+angel.startups.followers(6702, true).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 
 ## Feeds
@@ -283,13 +421,22 @@ Returns site activity. If authenticated and the personalized parameter is passed
 ```javascript
 angel.feeds.consume({
     since: 'PRESAVED_UNIX_TIMESTAMP',
-    personalized: 1,
-    access_token: 'access_token_here'
+    personalized: 1
 }, function(err, body) {
     if ( err )
         return console.log(err);
 
     console.log(body);
+});
+
+//OR with promise
+angel.feeds.consume({
+    since: 'PRESAVED_UNIX_TIMESTAMP',
+    personalized: 1
+}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
 });
 ```
 
@@ -309,6 +456,16 @@ angel.search.search({
 
     console.log(body);
 });
+
+//OR with promise
+angel.search.search({
+    query: "hamza-waqas",
+    type: "User"
+}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 
 ### Search by Slugs
@@ -322,6 +479,15 @@ angel.search.slugs({
         return console.log(err);
 
     console.log(body);
+});
+
+//OR with promise
+angel.search.slugs({
+    query: "hamza-waqas"
+}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
 });
 ```
 
@@ -342,6 +508,16 @@ angel.comments.comments({
 
     console.log(body);
 });
+
+//OR with promise
+angel.comments.comments({
+    commentable_type: "Startup",
+    commentable_id: 6702
+}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 
 ### Create Comment
@@ -357,6 +533,16 @@ angel.comments.create('I b reviewing it now!', {
 
     console.log(body);
 });
+
+//OR with promise
+angel.comments.create('I b reviewing it now!', {
+    commentable_type: "Startup",
+    commentable_id: 6702
+}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 
 ### Delete a comment
@@ -368,6 +554,13 @@ angel.comments.trash('comment_id', function(err, body) {
         return console.log(err);
 
     console.log(body);
+});
+
+//OR with promise
+angel.comments.trash('comment_id').then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
 });
 ```
 
@@ -388,6 +581,16 @@ angel.follows.follow({
 
     console.log(body);
 });
+
+//OR with promise
+angel.follows.follow({
+    type: "Startup",
+    id: "id_to_follow_here"
+}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 
 ### Stop Following
@@ -402,6 +605,16 @@ angel.follows.unfollow({
         return console.log(err);
 
     console.log(body);
+});
+
+//OR with promise
+angel.follows.unfollow({
+    type: "Startup",
+    id: "id_to_follow_here"
+}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
 });
 ```
 
@@ -419,6 +632,17 @@ angel.follows.relationship({
 
     console.log(body);
 });
+
+//OR with promise
+angel.follows.relationship({
+    source_id: "source_id_here",
+    target_type: "User_or_Startup",
+    target_id: "relational_id"
+}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 
 ### Batch
@@ -430,6 +654,13 @@ angel.follows.batch([1,2,3,4,5], function(err, body) {
         return console.log(err);
         
     console.log(body);
+});
+
+//OR with promise
+angel.follows.batch([1,2,3,4,5]).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
 });
 ```
 
@@ -450,6 +681,15 @@ angel.intros.create({
         
     console.log(body); // Got it here!
 });
+//OR with promise
+angel.intros.create({
+    startup_id: 6702,
+    note: "Lets make some chit chat sometime and Zuck's place?"
+}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 
 ## Messages
@@ -469,6 +709,16 @@ angel.messages.list({
         
     console.log(body); // Something with messages here.
 });
+
+//OR with promise
+angel.messages.list({
+    view: "inbox"
+}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
+
 ```
 
 ### Get Messages - Thread
@@ -485,6 +735,14 @@ angel.messages.message(
         console.log(body); // Something with messages here.
     }
 );
+
+//OR with promise
+angel.messages.message('thread_id').then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
+
 ```
 
 ### Create Message
@@ -501,6 +759,18 @@ angel.messages.create({
         
     console.log(body); // Something with messages here.
 });
+
+//OR with promise
+angel.messages.create({
+    thread_id: '',
+    recipient_id: '',
+    body: 'So, did you got my message? Errh!'
+}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
+
 ```
 
 ### Mark the Message.
@@ -515,6 +785,14 @@ angel.messages.mark([1,2,3,4], {
         
     console.log(body); // Something with messages here.
 });
+
+//OR with promise
+angel.messages.mark([1,2,3,4]).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
+
 ```
 
 ## Paths
@@ -535,6 +813,19 @@ angel.paths.path({
         
     console.log(body); // Something with messages here.
 });
+
+//OR with promise
+angel.paths.path({
+    access_token: "",
+    user_ids: [],
+    startup_ids: [],
+    direction: 'following/followed'
+}).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
+
 ```
 
 ## Press
@@ -547,9 +838,17 @@ Returns all the presses related to the startup id.
 angel.press.startup(6702,  function(err, body) {
     if ( err )
         return console.log(err);
-        
+
     console.log(body); // Something with messages here.
 });
+
+//OR with promise
+angel.press.startup(6702).then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
+
 ```
 
 ### Get Press By Id
@@ -558,11 +857,18 @@ Returns the press of the given press id.
 ```javascript
 angel.press.press('press_id',  function(err, body) {
     if ( err )
-        return console.log(err);
-        
+        return console.log(err);     
     console.log(body); // Something with messages here.
 });
+
+//OR with promise
+angel.press.press('press_id').then(function(body){
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
+
 
 ## Reviews
 API specification is available at: https://angel.co/api/spec/reviews
@@ -577,6 +883,13 @@ angel.reviews.get('user_id', function(err, body) {
         
     console.log(body); // Something with messages here.
 });
+
+// OR with promise
+angel.reviews.get('review_id').then(function(err, body) {
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 
 ### Get Review
@@ -588,6 +901,13 @@ angel.reviews.review('review_id', function(err, body) {
         return console.log(err);
         
     console.log(body); // Something with messages here.
+});
+
+// OR with promise
+angel.reviews.review('review_id').then(function(err, body) {
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
 });
 ```
 
@@ -609,6 +929,18 @@ angel.startup_roles.get({
         
     console.log(body); // Something with messages here.
 });
+
+// OR with promise
+angel.startup_roles.get({
+    user_id: '',
+    startup_id: '',
+    role: '',
+    direction: ''
+}).then(function(err, body) {
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 
 ## Startup Updates
@@ -627,6 +959,17 @@ angel.startup_updates.get({
         
     console.log(body); // Something with messages here.
 });
+
+
+// OR with promise
+angel.startup_updates.get({
+    user_id: '',
+    startup_id: ''
+}).then(function(err, body) {
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 ### Post Updates.
 Creates a new startup update.
@@ -642,6 +985,16 @@ angel.startup_updates.create({
         
     console.log(body); // Something with messages here.
 });
+
+// OR with promise
+angel.startup_updates.create({
+        startup_id: '',
+        message: ''
+}).then(function(err, body) {
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 
 ### Delete Update.
@@ -655,6 +1008,13 @@ angel.startup_updates.trash(':id', {
         return console.log(err);
         
     console.log(body); // Something with messages here.
+});
+// OR with promise
+
+angel.startup_updates.trash(':id').then(function(err, body) {
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
 });
 ```
 
@@ -671,6 +1031,13 @@ angel.tags.tag(':id', function(err, body) {
         
     console.log(body); // Something with messages here.
 });
+// OR with promise
+
+angel.tags.tag(':id').then(function(err, body) {
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 
 ### Get Children
@@ -682,6 +1049,13 @@ angel.tags.children(':id', function(err, body) {
         return console.log(err);
         
     console.log(body); // Something with messages here.
+});
+// OR with promise
+
+angel.tags.children(':id').then(function(err, body) {
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
 });
 ```
 
@@ -695,6 +1069,14 @@ angel.tags.parents(':id', function(err, body) {
         
     console.log(body); // Something with messages here.
 });
+
+// OR with promise
+
+angel.tags.parents(':id').then(function(err, body) {
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
 ```
 
 ### Get Startups
@@ -707,6 +1089,14 @@ angel.tags.startups(':id', function(err, body) {
         
     console.log(body); // Something with messages here.
 });
+
+// OR with promise
+
+angel.tags.startups(':id').then(function(err, body) {
+        console.log(body);
+    }).catch(function(error){
+        console.log(error);
+    });
 ```
 
 ### Get Users
@@ -719,6 +1109,14 @@ angel.tags.users(':id', function(err, body) {
         
     console.log(body); // Something with messages here.
 });
+
+// OR with promise
+
+angel.tags.users(':id').then(function(err, body) {
+        console.log(body);
+    }).catch(function(error){
+        console.log(error);
+    });
 ```
 
 ## Likes
@@ -737,13 +1135,24 @@ angel.likes.likes({
         
     console.log(body); // Something with messages here.
 });
+
+// OR with promise
+
+angel.likes.likes({
+    likable_type: '',
+    likable_id: ''
+    }).then(function(err, body) {
+        console.log(body);
+    }).catch(function(error){
+        console.log(error);
+    });
 ```
 
 ### Create Likes
 Creates a new Like action over Likable story.
 
 ```javascript
-angel.likes.create({
+angel.likes.like({
     likable_type: '',
     likable_id: ''
 }, function(err, body) {
@@ -752,18 +1161,123 @@ angel.likes.create({
         
     console.log(body); // Something with messages here.
 });
+
+// OR with promise
+
+angel.likes.like({
+    likable_type: '',
+    likable_id: ''
+    }).then(function(err, body) {
+        console.log(body);
+    }).catch(function(error){
+        console.log(error);
+    });
 ```
 
 ### Delete Like / Unlike
 Creates a new delete / unlike action over Likable story.
 
 ```javascript
-angel.likes.trash('like_id', function(err, body) {
+angel.likes.unlike('like_id', function(err, body) {
     if ( err )
         return console.log(err);
         
     console.log(body); // Something with messages here.
 });
+
+
+// OR with promise
+
+angel.likes.unlike('like_id').then(function(err, body) {
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
+```
+
+## JObs
+
+Specification for the jobs is available at: https://angel.co/api/spec/jobs
+
+### List Jobs
+To list the jobs.
+
+```javascript
+angel.jobs.list(function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+
+// OR with promise
+
+angel.jobs.list().then(function(err, body) {
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
+
+```
+
+### Get a specific job
+To get a job, first argument must be the id of that job.
+
+```javascript
+angel.jobs.job('job_id', function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+// OR with promise
+
+angel.jobs.job('job_id').then(function(err, body) {
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
+
+```
+
+### Get jobs from a startup
+To get the list of jobs from a startup, first argument must be the **startup id**.
+
+```javascript
+angel.jobs.startup('startup_id', function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+
+// OR with promise
+
+angel.jobs.startup('startup_id').then(function(err, body) {
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
+
+```
+
+### Get jobs from a tag
+To get the list of jobs from a tag, first argument must be the **tag id**.
+
+```javascript
+angel.jobs.tag('tag_id', function(err, body) {
+    if ( err )
+        return console.log(err);
+
+    console.log(body);
+});
+// OR with promise
+angel.jobs.tag('tag_id').then(function(err, body) {
+    console.log(body);
+}).catch(function(error){
+    console.log(error);
+});
+
 ```
 
 ## Issues / Bugs
@@ -774,7 +1288,6 @@ These are the most important TODOs that are supposed to be done. If you can make
 * Create Jasmine / Mocha test cases to validate each of the service.
 * Few workable examples might be there to even make it more verbose.
 * Code Cleanup. I hate dirt but sometimes has to do!
-* Jobs Service. (Its useless for my current scenerio but welcome pull request for it).
 * You call it!
 
 ## Contribution
