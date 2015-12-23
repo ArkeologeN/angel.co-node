@@ -885,7 +885,7 @@ angel.reviews.get('user_id', function(err, body) {
 });
 
 // OR with promise
-angel.reviews.get('review_id').then(function(err, body) {
+angel.reviews.get('review_id').then(function(body) {
     console.log(body);
 }).catch(function(error){
     console.log(error);
@@ -904,7 +904,7 @@ angel.reviews.review('review_id', function(err, body) {
 });
 
 // OR with promise
-angel.reviews.review('review_id').then(function(err, body) {
+angel.reviews.review('review_id').then(function(body) {
     console.log(body);
 }).catch(function(error){
     console.log(error);
@@ -936,7 +936,7 @@ angel.startup_roles.get({
     startup_id: '',
     role: '',
     direction: ''
-}).then(function(err, body) {
+}).then(function(body) {
     console.log(body);
 }).catch(function(error){
     console.log(error);
@@ -965,7 +965,7 @@ angel.startup_updates.get({
 angel.startup_updates.get({
     user_id: '',
     startup_id: ''
-}).then(function(err, body) {
+}).then(function(body) {
     console.log(body);
 }).catch(function(error){
     console.log(error);
@@ -990,7 +990,7 @@ angel.startup_updates.create({
 angel.startup_updates.create({
         startup_id: '',
         message: ''
-}).then(function(err, body) {
+}).then(function(body) {
     console.log(body);
 }).catch(function(error){
     console.log(error);
@@ -1011,7 +1011,7 @@ angel.startup_updates.trash(':id', {
 });
 // OR with promise
 
-angel.startup_updates.trash(':id').then(function(err, body) {
+angel.startup_updates.trash(':id').then(function(body) {
     console.log(body);
 }).catch(function(error){
     console.log(error);
@@ -1033,7 +1033,7 @@ angel.tags.tag(':id', function(err, body) {
 });
 // OR with promise
 
-angel.tags.tag(':id').then(function(err, body) {
+angel.tags.tag(':id').then(function(body) {
     console.log(body);
 }).catch(function(error){
     console.log(error);
@@ -1052,7 +1052,7 @@ angel.tags.children(':id', function(err, body) {
 });
 // OR with promise
 
-angel.tags.children(':id').then(function(err, body) {
+angel.tags.children(':id').then(function(body) {
     console.log(body);
 }).catch(function(error){
     console.log(error);
@@ -1072,7 +1072,7 @@ angel.tags.parents(':id', function(err, body) {
 
 // OR with promise
 
-angel.tags.parents(':id').then(function(err, body) {
+angel.tags.parents(':id').then(function(body) {
     console.log(body);
 }).catch(function(error){
     console.log(error);
@@ -1092,7 +1092,7 @@ angel.tags.startups(':id', function(err, body) {
 
 // OR with promise
 
-angel.tags.startups(':id').then(function(err, body) {
+angel.tags.startups(':id').then(function(body) {
         console.log(body);
     }).catch(function(error){
         console.log(error);
@@ -1112,7 +1112,7 @@ angel.tags.users(':id', function(err, body) {
 
 // OR with promise
 
-angel.tags.users(':id').then(function(err, body) {
+angel.tags.users(':id').then(function(body) {
         console.log(body);
     }).catch(function(error){
         console.log(error);
@@ -1141,7 +1141,7 @@ angel.likes.likes({
 angel.likes.likes({
     likable_type: '',
     likable_id: ''
-    }).then(function(err, body) {
+    }).then(function(body) {
         console.log(body);
     }).catch(function(error){
         console.log(error);
@@ -1167,7 +1167,7 @@ angel.likes.like({
 angel.likes.like({
     likable_type: '',
     likable_id: ''
-    }).then(function(err, body) {
+    }).then(function(body) {
         console.log(body);
     }).catch(function(error){
         console.log(error);
@@ -1188,7 +1188,7 @@ angel.likes.unlike('like_id', function(err, body) {
 
 // OR with promise
 
-angel.likes.unlike('like_id').then(function(err, body) {
+angel.likes.unlike('like_id').then(function(body) {
     console.log(body);
 }).catch(function(error){
     console.log(error);
@@ -1212,7 +1212,7 @@ angel.jobs.list(function(err, body) {
 
 // OR with promise
 
-angel.jobs.list().then(function(err, body) {
+angel.jobs.list().then(function(body) {
     console.log(body);
 }).catch(function(error){
     console.log(error);
@@ -1232,7 +1232,7 @@ angel.jobs.job('job_id', function(err, body) {
 });
 // OR with promise
 
-angel.jobs.job('job_id').then(function(err, body) {
+angel.jobs.job('job_id').then(function(body) {
     console.log(body);
 }).catch(function(error){
     console.log(error);
@@ -1253,7 +1253,7 @@ angel.jobs.startup('startup_id', function(err, body) {
 
 // OR with promise
 
-angel.jobs.startup('startup_id').then(function(err, body) {
+angel.jobs.startup('startup_id').then(function(body) {
     console.log(body);
 }).catch(function(error){
     console.log(error);
@@ -1272,7 +1272,7 @@ angel.jobs.tag('tag_id', function(err, body) {
     console.log(body);
 });
 // OR with promise
-angel.jobs.tag('tag_id').then(function(err, body) {
+angel.jobs.tag('tag_id').then(function(body) {
     console.log(body);
 }).catch(function(error){
     console.log(error);
